@@ -2,6 +2,7 @@ var config = require('../config')
   , utils = require('../utils');
 
 exports.create = function(req, res) {
+        console.log(req.rawBody);
 	var lines = req.rawBody.split('\n');
 	var messages = [];
 
@@ -20,7 +21,7 @@ exports.create = function(req, res) {
 			if (isNaN(value))
 				value = pair[1];
 
-			if (key === 'type')
+			if (key === 'type' || key === 'ts')
 				message[key] = value;
 			else
 				message.body[key] = value;
@@ -28,6 +29,8 @@ exports.create = function(req, res) {
 
 		messages.push(message);
 	});
+
+        console.dir(messages);
 
     config.message_hub.send(req.user, messages, function(err, messages) {
         if (err) return utils.handleError(res, err);
