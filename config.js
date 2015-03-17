@@ -78,12 +78,10 @@ config.validate_schemas = true;
 
 // Configure the Message Hub provider to use to push messages to.
 
-var messages_endpoint = config.proxy_messages_endpoint || process.env.PROXY_MESSAGES_ENDPOINT || 'http://localhost:3033/api/v1/messages';
+var messages_endpoint = config.proxy_messages_endpoint || process.env.PROXY_MESSAGES_ENDPOINT || 'http://n2-ing-prod.cloudapp.net/api/v1/messages';
 
 config.message_hub = new localProviders.ProxyMessageHub({
     messages_endpoint: messages_endpoint
 });
-
-console.log('messages endpoint: ' + messages_endpoint);
 
 module.exports = config;
