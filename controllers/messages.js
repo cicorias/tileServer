@@ -1,4 +1,5 @@
 var config = require('../config')
+  , request = require('request')
   , utils = require('../utils');
 
 exports.create = function(req, res) {
@@ -43,10 +44,15 @@ exports.create = function(req, res) {
 
        console.dir(messages);
 
-    config.message_hub.send(req.user, messages, function(err, messages) {
-        if (err) return utils.handleError(res, err);
+        request.post('https://messaging-production.nitrogen.io/api/v1/messages', {
+            json: messages,
+            headers: {
+                Authorization: 'Bearer ' + req.user.rawJwtToken
+            }   
+        }, function(err, resp, body) {
+           if (err) return utils.handleError(res, err);
 
-        res.send(200);
-    });
+           res.send(200);
+        }); 
 
 };

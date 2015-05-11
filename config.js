@@ -36,7 +36,7 @@ if (process.env.NODE_ENV === "production") {
 config.internal_port = config.internal_port || 3039;
 config.external_port = config.external_port || 443;
 
-config.access_token_signing_key = process.env.ACCESS_TOKEN_SIGNING_KEY || '12345678901234567890123456789012';
+config.access_token_signing_key = process.env.ACCESS_TOKEN_SIGNING_KEY || '41FdV342bA91rsOf1kkPj1Qv86RRSUk2';
 
 // Endpoint URI configuration
 
@@ -77,11 +77,5 @@ log.add(log.transports.Console, { colorize: true, timestamp: true, level: 'info'
 config.validate_schemas = true;
 
 // Configure the Message Hub provider to use to push messages to.
-
-var messages_endpoint = config.proxy_messages_endpoint || process.env.PROXY_MESSAGES_ENDPOINT || 'http://n2-ing-prod.cloudapp.net/api/v1/messages';
-
-config.message_hub = new localProviders.ProxyMessageHub({
-    messages_endpoint: messages_endpoint
-});
 
 module.exports = config;

@@ -28,7 +28,11 @@ app.use(passport.initialize());
 app.use(rawBody);
 
 passport.use(new BearerStrategy({}, function(token, done) {
+    console.log('token: ' + token);
+    console.log('atsk: ' + config.access_token_signing_key);
+
     jwt.verify(token, config.access_token_signing_key, function(err, jwtToken) {
+        console.log('jwt.verify: ' + err);
         if (err) return done(err);
 
         var principal = {
@@ -45,9 +49,9 @@ passport.use(new BearerStrategy({}, function(token, done) {
 app.enable('trust proxy');
 app.disable('x-powered-by');
 
-server.listen(config.internal_port);
+server.listen(80);
 
 app.get(config.ops_path + '/health', controllers.ops.health);
 app.post(config.messages_path, middleware.accessTokenRelay, controllers.messages.create);
 
-log.info("car gateway service has initialized and exposed external api at: " + config.api_endpoint + " on internal port: " + config.internal_port);
+log.info("car gateway service has initialized on port 80.");
