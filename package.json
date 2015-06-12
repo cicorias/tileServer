@@ -1,6 +1,6 @@
 {
-  "name": "httpGateway",
-  "homepage": "https://github.com/nitrogenjs/httpGateway",
+  "name": "tileData",
+  "homepage": "https://github.com/nitrogenjs/tileData",
   "repository": {
     "type": "git",
     "url": "https://github.com/nitrogenjs/ingestion.git"
@@ -18,20 +18,8 @@
   },
   "dependencies": {
     "async": "~0.2.10",
-    "connect-ensure-login": "~0.1.1",
     "express": "~3.5.3",
-    "jsonwebtoken": "~1.1.2",
-    "nitrogen-local-providers": "~0.3.10",
-    "passport": "~0.2.1",
-    "passport-http-bearer": "~1.0.1",
-    "passport-local": "~1.0.0",
-    "request": "~2.36.0",
-    "revalidator": "~0.1.8",
-    "winston": "~0.7.3",
-    "winston-loggly": "~1.0.2"
-  },
-  "devDependencies": {
-    "mocha": "~1.20.1"
+    "request": "~2.36.0"
   },
   "scripts": {
     "test": "NODE_ENV=test mocha"

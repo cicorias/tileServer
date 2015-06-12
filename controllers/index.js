@@ -1,4 +1,4 @@
 module.exports = {
-    messages: require('./messages'),
+    tiles: require('./tiles'),
     ops: require('./ops')
 };
