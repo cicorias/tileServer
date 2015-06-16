@@ -1,10 +1,17 @@
 var express = require('express')
   , app = express()
+  , config = require('./config')
   , server = require('http').createServer(app)
   , controllers = require('./controllers');
 
-server.listen(3030);
+var mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/tiles");
 
-app.get('/tile/:id', controllers.tiles.show);
+app.use(express.bodyParser());
 
-console.log("tile gateway service has initialized on port 3030.");
+app.get('/tiles/:id',  controllers.tiles.show);
+app.post('/tiles', controllers.tiles.create);
+
+server.listen(config.PORT);
+
+console.log('tile server listening on port: ' + config.PORT);
