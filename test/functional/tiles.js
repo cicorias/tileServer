@@ -19,11 +19,14 @@ describe('tiles endpoint', function() {
                         administrative_area_level_2: "Barcelona",
                         administrative_area_level_1: "Catalunya",
                         country: "Spain",
-                        raw: '{"raw":"json"}'
+                        raw: {
+                            "raw": "json"
+                        }
                     }
                 }
             }
         }, function(err, resp, body) {
+            console.log(err);
             assert(!err);
             assert.equal(resp.statusCode, 200);
 

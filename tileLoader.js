@@ -10,9 +10,10 @@ fs.readdir('tiles/', function(err, tileFiles) {
        console.log(tileFile);
 
        var tileFileContent = fs.readFileSync('tiles/' + tileFile, 'utf8');
-       if (tileFileContent.length === 0) return;
+       if (tileFileContent.length === 0) return fileCallback();
 
        var tileJson = JSON.parse(tileFileContent);
+       if (tileFileContent.indexOf("OVER_QUERY_LIMIT") !== -1) return fileCallback();
 
        var postJson = {
            data: {
@@ -23,7 +24,7 @@ fs.readdir('tiles/', function(err, tileFiles) {
                    administrative_area_level_2: tileJson.parsed.administrative_area_level_2,
                    administrative_area_level_1: tileJson.parsed.administrative_area_level_1,
                    country: tileJson.parsed.country,
-                   raw: tileFileContent
+                   raw: tileJson
                }
            }
        };

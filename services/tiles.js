@@ -8,6 +8,8 @@ var create = function(tile, callback) {
         if (err) return callback(err);
         if (retTile) return callback(null, retTile);
 
+        if (tile.raw.status === "OVER_QUERY_LIMIT") return callback();
+
         tile._id = new mongoose.Types.ObjectId();
         tile.save(callback);
     });

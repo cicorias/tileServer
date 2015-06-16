@@ -9,7 +9,7 @@ var schema = mongoose.Schema({
     administrative_area_level_2: String,
     locality: String,
 
-    raw: String
+    raw: { type: mongoose.Schema.Types.Mixed, required: true }
 });
 
 schema.set('toObject', {
