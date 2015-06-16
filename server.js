@@ -5,8 +5,11 @@ var express = require('express')
   , controllers = require('./controllers');
 
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/tiles");
 
+console.log('connecting to MongoDB: ' + config.MONGODB_CONNECTION_STRING);
+mongoose.connect(config.MONGODB_CONNECTION_STRING);
+
+app.use(express.logger());
 app.use(express.bodyParser());
 
 app.get('/tiles/:id',  controllers.tiles.show);
