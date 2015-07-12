@@ -14,6 +14,17 @@ exports.create = function (req, res) {
     });
 };
 
+exports.index = function(req, res) {
+    services.tiles.find({}, function(err, tiles) {
+        if (err) return res.send(400, err);
+        if (!tile) return res.send(404);
+
+        services.tiles.toJsonApi(tile, function(tileJsonApi) {
+            res.send(tileJsonApi);
+        });
+    });
+};
+
 exports.show = function(req, res) {
     services.tiles.findByTileId(req.params.id, function(err, tile) {
         if (err) return res.send(400, err);

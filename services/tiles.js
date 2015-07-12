@@ -1,5 +1,4 @@
-var config = require('../config')
-  , models = require('../models')
+var models = require('../models')
   , mongoose = require('mongoose')
   , JSONAPISerializer = require('jsonapi-serializer');
 
@@ -17,6 +16,10 @@ var create = function(tile, callback) {
 
 var findByTileId = function(tileId, callback) {
     models.Tile.findOne({ tile_id: tileId }, callback);
+};
+
+var find = function(filter, options, callback) {
+    models.Tile.find(filter, null, options, callback);
 };
 
 var fromJsonApi = function(body) {
@@ -37,7 +40,6 @@ var toJsonApi = function(tile, callback) {
     var tileObj = tile.toObject();
 
     new JSONAPISerializer('tiles', tileObj, {
-        apiEndpoint: config.API_ENDPOINT,
         attributes: [
             'tile_id',
             'country',
@@ -51,6 +53,7 @@ var toJsonApi = function(tile, callback) {
 
 module.exports = {
     create: create,
+    find: find,
     findByTileId: findByTileId,
     fromJsonApi: fromJsonApi,
     toJsonApi: toJsonApi
