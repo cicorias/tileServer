@@ -5,7 +5,10 @@ var request = require('request')
 var currentLocation = {};
 
 exports.create = function (req, res) {
-    currentLocation = services.tiles.fromJsonApi(req.body);
+    console.log(req.body);
+    for (var key in req.body) {
+        currentLocation = JSON.parse(key);
+    }
     console.dir(currentLocation);
 };
 
