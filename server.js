@@ -5,8 +5,8 @@ var express = require('express')
 
 var mongoose = require('mongoose');
 
-//console.log('connecting to MongoDB: ' + process.env.MONGODB_CONNECTION_STRING);
-//mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
+console.log('connecting to MongoDB: ' + process.env.MONGODB_CONNECTION_STRING);
+mongoose.connect(process.env.MONGODB_CONNECTION_STRING);
 
 app.use(function(req, res, next) {
     res.header('Access-Control-Allow-Origin', "*");
